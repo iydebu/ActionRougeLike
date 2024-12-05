@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\personal\\unreal\\actionrougelike\\actionrougelike\\source\\actionrougelike\\actionrougelike.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\personal\\unreal\\actionrougelike\\actionrougelike\\intermediate\\build\\win64\\x64\\actionrougelikeeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\personal\\unreal\\actionrougelike\\actionrougelike\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\actionrougelike\\definitions.actionrougelike.h",
+            "d:\\personal\\unreal\\actionrougelike\\actionrougelike\\source\\actionrougelike\\actionrougelike.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

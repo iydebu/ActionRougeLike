@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Personal\\Unreal\\ActionRougeLike\\ActionRougeLike\\Source\\ActionRougeLike\\ActionRougeLike.Build.cs",
+		"D:\\Personal\\Unreal\\ActionRougeLike\\ActionRougeLike\\Source\\ActionRougeLike.Target.cs",
+		"D:\\Personal\\Unreal\\ActionRougeLike\\ActionRougeLike\\Source\\ActionRougeLikeEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}
