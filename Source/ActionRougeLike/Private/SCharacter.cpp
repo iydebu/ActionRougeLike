@@ -3,11 +3,20 @@
 
 #include "SCharacter.h"
 
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+
 // Sets default values
 ASCharacter::ASCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	springArmComp = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
+	springArmComp->SetupAttachment(RootComponent);
+
+	cameraComp = CreateDefaultSubobject<UCameraComponent>("CameraComp");
+	cameraComp->SetupAttachment(springArmComp);
 
 }
 
@@ -29,6 +38,24 @@ void ASCharacter::Tick(float DeltaTime)
 void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
+	PlayerInputComponent->BindAxis("MoveForward",this,&ASCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight",this,&ASCharacter::MoveRight);
+	
+	PlayerInputComponent->BindAxis("Turn",this,&APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp",this,&APawn::AddControllerPitchInput);
+	
 }
+
+void ASCharacter::MoveForward(float value)
+{
+	AddMovementInput(GetActorForwardVector(),value);
+}
+
+void ASCharacter::MoveRight(float value)
+{
+	AddMovementInput(GetActorRightVector(),value);
+}
+
+
 
