@@ -4,6 +4,7 @@
 #include "SCharacter.h"
 
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
@@ -13,10 +14,14 @@ ASCharacter::ASCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	springArmComp = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
+	springArmComp->bUsePawnControlRotation = true;
 	springArmComp->SetupAttachment(RootComponent);
 
 	cameraComp = CreateDefaultSubobject<UCameraComponent>("CameraComp");
 	cameraComp->SetupAttachment(springArmComp);
+
+	bUseControllerRotationYaw = false;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 
 }
 
@@ -49,12 +54,24 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void ASCharacter::MoveForward(float value)
 {
-	AddMovementInput(GetActorForwardVector(),value);
+	FRotator controlRot = GetControlRotation();
+	controlRot.Pitch = 0.0f;
+	controlRot.Roll = 0.0f;
+	
+	AddMovementInput(controlRot.Vector(),value);
 }
 
 void ASCharacter::MoveRight(float value)
 {
-	AddMovementInput(GetActorRightVector(),value);
+	FRotator controlRot = GetControlRotation();
+	controlRot.Pitch = 0.0f;
+	controlRot.Roll = 0.0f;
+	
+	//x = forward
+	//y = right
+	//z = up
+	FVector rightVector = FRotationMatrix(controlRot).GetScaledAxis(EAxis::Y);
+	AddMovementInput(rightVector,value);
 }
 
 
