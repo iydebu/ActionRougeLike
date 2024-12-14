@@ -23,9 +23,9 @@ public:
 	ASMagicProjectile();
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Niagara");
-	UNiagaraSystem* projectile_begin;
+	UNiagaraSystem* projectileEffect;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Niagara");
-	UNiagaraSystem* projectile_end;
+	UNiagaraSystem* hitEffect;
 
 
 protected:

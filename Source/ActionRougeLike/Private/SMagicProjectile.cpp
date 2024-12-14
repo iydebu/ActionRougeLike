@@ -24,6 +24,7 @@ ASMagicProjectile::ASMagicProjectile()
 
 	effectComp = CreateDefaultSubobject<UNiagaraComponent>("EffectComp");
 	effectComp->SetupAttachment(sphereComp);
+	effectComp->SetAsset(projectileEffect);
 	
 
 	movementComp = CreateDefaultSubobject<UProjectileMovementComponent>("MovementComp");
@@ -51,8 +52,21 @@ void ASMagicProjectile::Tick(float DeltaTime)
 
 void ASMagicProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	UE_LOG(LogTemp,Warning,TEXT("Projectile Hit"));
-	effectComp->
+	//UE_LOG(LogTemp,Warning,TEXT("Projectile Hit"));
+
+	effectComp->SetAsset(hitEffect);
+	effectComp->Activate();
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(
+		TimerHandle,
+		[this]()
+		{
+			Destroy();
+		},
+		1.0f,
+		false
+		);
+	
 
 }
 
